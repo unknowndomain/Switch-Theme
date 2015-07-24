@@ -1,7 +1,5 @@
 <?php
-
 	/*
-
 		Plugin Name: Switch Theme
 		Plugin URI: http://wordpress.org/extend/plugins/switch-theme
 		Version: 1.0
@@ -16,7 +14,6 @@
 		License: GPLv3
 		
 		Copyright (C) 2011 Tom Lynch
-
 	    This program is free software: you can redistribute it and/or modify
 	    it under the terms of the GNU General Public License as published by
 	    the Free Software Foundation, either version 3 of the License, or
@@ -91,10 +88,10 @@
 				<div class="wrap">
 					<div id="icon-themes" class="icon32"></div>
 					<h2>Switch Theme</h2>
-					<? if ( current_user_can( 'manage_network_options' ) ): ?>
-						<? if (isset( $done )): ?>
+					<?php if ( current_user_can( 'manage_network_options' ) ): ?>
+						<?php if (isset( $done )): ?>
 							<div id="message" class="updated"><p>All blogs switched to the <?= $theme['Name'] ?> theme.</p></div>
-						<? endif ?>
+						<?php endif ?>
 						<form method="post" action="themes.php?page=switch-theme">
 							<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?= wp_create_nonce( 'switchtheme' ) ?>">
 							<p>Switch Theme will permanently change all blogs to use the selected theme, be careful!!</p>
@@ -105,9 +102,9 @@
 										<td>
 											<select name="theme">
 												<option value="" selected="selected">Choose a theme</option>
-												<? foreach ( get_themes() as $key => $theme ): ?>
-													<option value="<?= $key ?>"><?= $theme['Name'] ?></option>
-												<? endforeach ?>
+												<?php foreach ( get_themes() as $key => $theme ): ?>
+													<option value="<?php $key ?>"><?php $theme['Name'] ?></option>
+												<?php endforeach ?>
 											</select>
 										</td>
 									</tr>
@@ -117,11 +114,11 @@
 								<input type="submit" class="button-primary" value="Switch">
 							</p>
 						</form>
-					<? else: ?>
+					<?php else: ?>
 						<p>You do not have permission to use Switch Theme.</p>
-					<? endif ?>
+					<?php endif ?>
 				</div>
-			<?
+			<?php
 		}
 	}
 	
@@ -132,8 +129,6 @@
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			
 		deactivate_plugins( __FILE__ );
-
 		wp_die( 'This Switch Theme can only be used with on a WordPress installation in multisite mode.' );
 	}
-
 ?>
